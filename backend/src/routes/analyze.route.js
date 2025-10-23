@@ -1,8 +1,9 @@
 import express from 'express';
 import multer from 'multer';
 import {upload} from '../utils/uploadHandle.js';
-import pdfParse from 'pdf-parse';
 import axios from 'axios';
+import {PDFParse} from "pdf-parse";
+
 
 
 
@@ -36,8 +37,10 @@ router.post('/analyze', upload, async (req, res) =>{
 
     const extractData = async (data)=>{
         if (data.mimetype === "application/pdf"){
-            const pdf = await pdfParse(data.buffer);
-            return pdf.text;
+            const p = new PDFParse({data:data.buffer});
+            const res = await p.getText();
+            await p.destroy();
+            return res.text;
         }
         else{
             return data.buffer.toString("utf-8");
@@ -60,7 +63,8 @@ router.post('/analyze', upload, async (req, res) =>{
 
 
 
-    res.json({message:"Analyze endpoint hit", resume:resume, jobDescription:jobDes});
+    res.json({message:"Analyze endpoint hit", resume:resumeData, jobDescription:jobData});
+    console.log(resumeData, jobData);
 
 
     
