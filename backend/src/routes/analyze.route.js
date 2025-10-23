@@ -11,3 +11,6 @@ router.post('/', (req, res) =>{
 router.post('/api/upload', (req, res) =>{
     res.send("Upload endpoint");
 })
+
+
+export default router;
