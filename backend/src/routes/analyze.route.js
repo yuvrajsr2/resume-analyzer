@@ -3,13 +3,13 @@ import express from 'express';
 
 const router = express.Router();
 
-router.post('/', (req, res) =>{
+router.post('/upload', (req, res) =>{
     res.send("Upload endpoint");
 })
 
 
-router.post('/api/upload', (req, res) =>{
-    res.send("Upload endpoint");
+router.post('/analyze', (req, res) =>{
+    res.send("Analyze endpoint");
 })
 
 

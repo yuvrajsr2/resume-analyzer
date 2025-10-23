@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-app.use("/api/analyze", analyzeRoute)
+app.use("/api", analyzeRoute)
 
 
 app.listen(PORT, ()=>{
