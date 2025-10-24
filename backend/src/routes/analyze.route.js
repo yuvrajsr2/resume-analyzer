@@ -59,30 +59,31 @@ router.post('/analyze', upload, async (req, res) => {
 
         //todo: get hugging face api, then send a axios req to hugging face with the prompt
         const prompt = `
-    You are a resume analyzer. Compare the following resume and job description.
-    Return:
-    - A percentage match (0–100%)
-    - 5 key matching skills
-    - 5 missing or weak skills
-    - 3 short recommendations to improve the resume.
+            You are a resume analyzer. Compare the following resume and job description.
+            Return:
+            - A percentage match (0–100%)
+            - 5 key matching skills
+            - 5 missing or weak skills
+            - 3 short recommendations to improve the resume.
 
-    Resume:
-    ${resumeData}
+            Resume:
+            ${resumeData}
 
-    Job Description:
-    ${jobData}
-    `;
+            Job Description:
+            ${jobData}
+            `;
 
 
-        const completion = await client.chatCompletion({
-            model: 'deepseek-ai/DeepSeek-V3-0324',
-            provider: "auto",
-            messages: [{
-                role: "user",
-                content: prompt,
-            },
-            ],
-        });
+        const completion = await client.chatCompletion(
+            {
+                model: 'deepseek-ai/DeepSeek-V3-0324',
+                provider: "auto",
+                messages: [{
+                    role: "user",
+                    content: prompt,
+                },
+                ],
+            });
 
         const response = completion.choices[0].message.content;
 
