@@ -1,5 +1,4 @@
-import express from 'express';
-import multer from 'multer';
+import express, { raw } from 'express';
 import { upload } from '../utils/uploadHandle.js';
 import axios from 'axios';
 import { PDFParse } from "pdf-parse";
@@ -55,6 +54,12 @@ export default function analyzeRoute(token) {
 
 
 
+            // need to fix the api call to hugging face
+            // employ a query func to send the prompt and get the response
+            // call the query function with the prompt and model name 
+
+
+
             //todo: get hugging face api, then send a axios req to hugging face with the prompt
             const prompt = `
             You are a resume analyzer. Compare the following resume and job description.
@@ -73,25 +78,37 @@ export default function analyzeRoute(token) {
 
 
             const completion = await axios.post(
-                "https://router.huggingface.co/hf-inference/models/deepseek-ai/DeepSeek-V3-0324",
-                { inputs: prompt },
-                { headers: { Authorization: `Bearer ${token}` } }
+                "https://router.huggingface.co/v1/chat/completions",
+                {
+                    model: "deepseek-ai/DeepSeek-V3-0324", // remove :novita unless needed
+                    messages: [{ role: "user", content: prompt }],
+                },
+                {
+                    headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                    },
+                }
             );
 
-            const response =
-                Array.isArray(completion.data) && completion.data[0]?.generated_text
-                    ? completion.data[0].generated_text
-                    : 'No response from model';
+            const analysis = completion.data?.choices?.[0]?.message?.content || "No analysis returned";
+
+            let parsedAnal;
+            try {
+                parsedAnal = JSON.parse(analysis);
+            } catch (error) {
+                parsedAnal = { error: "Failed to parse analysis", raw: analysis };
+            }
 
             // return formated res
             res.json({
                 success: true,
-                analysis: response,
+                analysis: parsedAnal,
             });
 
 
 
-            console.log("Hugging face response:", response);
+            console.log("Hugging face response:", analysis);
 
         } catch (error) {
             console.error(error);
