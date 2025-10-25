@@ -29,7 +29,7 @@ export default function analyzeRoute(token) {
         // check if files are there and then extract the data from the files
         try {
 
-            if (!req.files || !req.files["resume"] || !req.files["jobDescription"]) {
+            if (!req.files || (!req.files["resume"] && !req.body.resumeText) || (!req.files["jobDescription"] && !req.body.jobDescriptionText)) {
                 return res.status(400).json({ error: "Invalid plz enter both files gang" })
             }
 
@@ -51,8 +51,26 @@ export default function analyzeRoute(token) {
             }
 
 
-            const resumeData = await extractData(resume);
-            const jobData = await extractData(jobDes);
+
+            // decide whether to use file upload or text input
+            let resumeData;
+            if (req.body.resumeText){
+                resumeData = req.body.resumeText;
+            } else {
+                resumeData = await extractData(resume);
+            }
+            
+
+            let jobData;
+            if (req.body.jobDescriptionText){
+                jobData = req.body.jobDescriptionText;
+            } else {
+                jobData = await extractData(jobDes);
+            }
+
+            
+            // const resumeData = await extractData(resume);
+            // const jobData = await extractData(jobDes);
 
 
 
