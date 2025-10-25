@@ -18,13 +18,16 @@ export default function analyzeRoute(token) {
     // im gonna combine upload and analyze in one route only 
 
 
-    // analyze endpoint:todo using hugging face api to analyze the resume and job description
-    //todo:take in the uploaded files from the request like req.files.resume and req.files.jobDescription and
-    // process them accordingly and use the hugging face api to analyze them. and then return 
-    // the analysis result as json response. the response should be a percetange match 
-    //and the the key skills matched and not matched and give recommendation to improve the resume.
+    //analyze route using hugging face api
     router.post('/analyze', upload, async (req, res) => {
 
+
+        //todo fix the if statement below so that we can add both files and normal text input and make it optional
+        // maybe check if text input exists then use that else use file upload
+
+        
+
+        // check if files are there and then extract the data from the files
         try {
 
             if (!req.files || !req.files["resume"] || !req.files["jobDescription"]) {
@@ -54,13 +57,7 @@ export default function analyzeRoute(token) {
 
 
 
-            // need to fix the api call to hugging face
-            // employ a query func to send the prompt and get the response
-            // call the query function with the prompt and model name 
-
-
-
-            //todo: get hugging face api, then send a axios req to hugging face with the prompt
+          
             const prompt = `
             You are a resume analyzer. Compare the following resume and job description.
             Return:
@@ -76,11 +73,11 @@ export default function analyzeRoute(token) {
             ${jobData}
             `;
 
-
+            // call hugging face api for analysis
             const completion = await axios.post(
                 "https://router.huggingface.co/v1/chat/completions",
                 {
-                    model: "deepseek-ai/DeepSeek-V3-0324", // remove :novita unless needed
+                    model: "deepseek-ai/DeepSeek-V3-0324", 
                     messages: [{ role: "user", content: prompt }],
                 },
                 {
@@ -93,6 +90,8 @@ export default function analyzeRoute(token) {
 
             const analysis = completion.data?.choices?.[0]?.message?.content || "No analysis returned";
 
+
+            // parse analysis to json (doesnt work properly right now, todo: fix it later)
             let parsedAnal;
             try {
                 parsedAnal = JSON.parse(analysis);
