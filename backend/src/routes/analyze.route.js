@@ -24,8 +24,7 @@ export default function analyzeRoute(token) {
 
         //todo fix the if statement below so that we can add both files and normal text input and make it optional
         // maybe check if text input exists then use that else use file upload
-
-        
+        // check if text input is null or not 
 
         // check if files are there and then extract the data from the files
         try {
