@@ -46,6 +46,21 @@ const HomePage = () => {
     }
 
     const handleAnalyze = async () =>{
+        const data = new FormData();
+
+        data.append("resume", resumeFile);
+        data.append("jobDescription", jobDescriptionFile);
+        data.append("resumeText", resumeText);
+        data.append("jobDescriptionText", jobDescriptionText);
+
+        try{
+            const res = await axios.post("http://localhost:5001/api/analyze", data);
+            setResults(res.data);
+
+        }
+        catch(err){
+            console.log(err);
+        }
 
     }
 
