@@ -56,7 +56,7 @@ const HomePage = () => {
       <header className="flex justify-center items-center bg-gray-200 py-4">
         <h1 className="text-3xl font-bold">Resume Analyzer</h1>
       </header>
-      <main className="flex flex-grow flex-col justify-center items-center">
+      <main className="flex grow flex-col justify-center items-center">
         <div className="mb-4">
           <label htmlFor="resume-file" className="block text-lg font-medium mb-2">
             Upload Resume:
