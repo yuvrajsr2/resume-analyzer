@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { use } from 'react'
+import {useLocation, useNavigate} from 'react-router-dom'
 
 
 //Analyze page component
@@ -6,10 +7,23 @@ import React from 'react'
 // styling and layout with ResumeAnalyzer theme and header on top
 // maybe a back button to go back to home page
 const AnalyzePage = () =>{
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const res = location.state?.results;
+
+    if (!res) return(
+        <div className='flex flex-col items-center justify-center min-h-screen'>
+            <p>No results found, Please try again</p>
+
+            <button onClick={()=>navigate("/")} className='mt-4 bg-blue-600 text-white px-4 py-2 rounded'>Go Back</button>
+        </div>
+    )
+
     return(
         <div>
             Analyze page
-            
+
         </div>
     )
 }
