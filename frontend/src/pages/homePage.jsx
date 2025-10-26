@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Navigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -28,6 +28,8 @@ const HomePage = () => {
     const [resumeText, setResumeText] = useState('');
     const [jobDescriptionText, setJobDescriptionText] = useState('');
     const [results, setResults] = useState(null);
+
+    const navigate = useNavigate();
 
 
     const handleResumeFileChange = (e) => {
@@ -59,12 +61,17 @@ const HomePage = () => {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             setResults(res.data);
+
+
+            navigate("/analyze", {state: {results: res.data}});
+
+            
         } catch (err) {
             console.error("Error analyzing:", err);
             alert("Error analyzing resume. Please try again.");
         }
 
-        Navigate("/analyze", {state:{results:results}});
+        
     };
 
 
