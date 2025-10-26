@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Navigate} from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -62,6 +63,8 @@ const HomePage = () => {
             console.error("Error analyzing:", err);
             alert("Error analyzing resume. Please try again.");
         }
+
+        Navigate("/analyze", {state:{results:results}});
     };
 
 
