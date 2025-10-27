@@ -5,19 +5,14 @@ import axios from 'axios'
 
 
 
-// Home page component
-// things to build here:
-// 1. Upload resume button and upload job descirption button
-// 2. analyze button that takes to analyze page with results
-// 3. also be able to enter text directly instead of uploading files
-// styling and layout with ResumeAnalyzer theme and header on top
-
-
-
-// finished the basic layout of the homepage,
-// need to add the handleAnalyze function and also: done
 
 // fix the styling for the page : todo today fix stlying 
+// cnat think anything right now : do later
+
+// also need to implement some security fixes like : not being able to analyze until we have one or the other 
+// to save api calls
+
+
 
 
 

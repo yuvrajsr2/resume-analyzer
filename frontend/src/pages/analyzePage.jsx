@@ -10,6 +10,11 @@ import {useLocation, useNavigate} from 'react-router-dom'
 
 // todo: fix res(state) styling today
 
+// styling : display 
+//show percetange slider : from the data we are given back from api
+// show the res in a ....
+// show the recommendation in a  ....
+
 const AnalyzePage = () =>{
     const location = useLocation();
     const navigate = useNavigate();
