@@ -80,8 +80,8 @@ const HomePage = () => {
 
     return (
         <div className="flex flex-col h-screen">
-            <header className="flex justify-center items-center bg-cyan-100 py-4">
-                <h1 className="text-3xl font-bold">Resume Analyzer</h1>
+            <header className="flex justify-center items-center bg-sky-900 py-4">
+                <h1 className="text-3xl font-bold text-amber-500">Resume Analyzer</h1>
             </header>
             <main className="flex grow flex-col justify-center items-center bg-amber-50">
                 <div className="mb-4">
@@ -106,6 +106,9 @@ const HomePage = () => {
                         onChange={handleJobDescriptionFileChange}
                     />
                 </div>
+
+                <div className='mb-5 text-3xl text-green-400 font-bold'> OR </div>
+
                 <div className="mb-4">
                     <label htmlFor="resume-text" className="block text-lg font-medium mb-2">
                         Enter Resume Text:
