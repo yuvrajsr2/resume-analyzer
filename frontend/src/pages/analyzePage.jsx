@@ -6,6 +6,10 @@ import {useLocation, useNavigate} from 'react-router-dom'
 // things to build here: display analysis results, provide options to download or share results
 // styling and layout with ResumeAnalyzer theme and header on top
 // maybe a back button to go back to home page
+
+
+// todo: fix res(state) styling today
+
 const AnalyzePage = () =>{
     const location = useLocation();
     const navigate = useNavigate();

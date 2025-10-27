@@ -15,8 +15,9 @@ import axios from 'axios'
 
 
 // finished the basic layout of the homepage,
-// need to add the handleAnalyze function and also
-// fix the styling for the page
+// need to add the handleAnalyze function and also: done
+
+// fix the styling for the page : todo today fix stlying 
 
 
 
@@ -111,7 +112,7 @@ const HomePage = () => {
                     </label>
                     <textarea
                         id="resume-text"
-                        className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        className="block w-lg p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         value={resumeText}
                         onChange={handleResumeTextChange}
                     />
@@ -122,7 +123,7 @@ const HomePage = () => {
                     </label>
                     <textarea
                         id="job-description-text"
-                        className="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        className="block w-lg p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         value={jobDescriptionText}
                         onChange={handleJobDescriptionTextChange}
                     />
