@@ -15,6 +15,8 @@ import {useLocation, useNavigate} from 'react-router-dom'
 // show the res in a ....
 // show the recommendation in a  ....
 
+// actually maby tweak it to return json data instead and not text
+
 const AnalyzePage = () =>{
     const location = useLocation();
     const navigate = useNavigate();
@@ -29,9 +31,11 @@ const AnalyzePage = () =>{
         </div>
     )
 
+    
+
     return(
         <div>
-            Analyze page
+            {/* need to parse the data */}
 
         </div>
     )
